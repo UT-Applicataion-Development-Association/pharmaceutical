@@ -1,7 +1,7 @@
 # Varient Project Documentation
 
 ## Purpose
-    To learn more about what this product aims to achieve, please refer to product slides.
+To learn more about what this product aims to achieve, please refer to product slides.
 
 ## Dev Environment
 Some basic software and technologies need to be installed to edit, compile, and run the code.
