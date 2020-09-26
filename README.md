@@ -47,7 +47,7 @@ npm
 ```
 After cloning the repository:
 ``` sh
-cd ./dev # change directory to ./dev folder
+cd ./Varient # change directory to ./Varient folder
 npm install --add
 ```
  This should give you the necessary dependencies.
@@ -57,7 +57,7 @@ Expo
 ```
 Then, set up expo client in your local environment by running:
 ``` sh
-cd ./dev # change directory to ./dev folder
+# change directory to repository root folder
 npm install expo-cli --global
 ```
 This will set up your code to run/test front end on Expo Client app.
