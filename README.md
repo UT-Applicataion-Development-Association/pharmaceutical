@@ -47,7 +47,7 @@ npm
 ```
 After cloning the repository:
 ``` sh
-cd ./dev # change directory to ./dev folder
+cd ./Varient # change directory to ./Varient folder
 npm install --add
 ```
  This should give you the necessary dependencies.
@@ -55,19 +55,12 @@ npm install --add
 ``` sh
 Expo
 ```
-Then, you may need to run the following expo commands to install some more dependencies
-
-Set up expo client in your local environment by running:
+Then, set up expo client in your local environment by running:
 ``` sh
-cd ./dev # change directory to ./dev folder
+# change directory to repository root folder
 npm install expo-cli --global
 ```
 This will set up your code to run/test front end on Expo Client app.
-These are expo react-native support:
-``` sh
-expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
-```
-
 WIP
 More on this can be found here: https://expo.io/learn
 ## Workflow
