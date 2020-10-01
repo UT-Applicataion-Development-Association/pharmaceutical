@@ -1,82 +1,61 @@
-import 'react-native-gesture-handler';
 import * as React from 'react';
 import { Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from '@react-navigation/native';
 
-function Feed() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home Display!</Text>
-    </View>
-  );
-}
-
-function Profile() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>User Information</Text>
-    </View>
-  );
-}
-
-function Notifications() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Notifications</Text>
-    </View>
-  );
-}
+import LoginPage from "./LoginPage.js";
+import NewsPage from "./NewsPage.js";
+import TreatmentPage from "./TreatmentPage.js";
+import InfoPage from "./InfoPage.js";
+import TrialsPage from "./TrialsPage.js"
 
 const Tab = createBottomTabNavigator();
-
-function MyTabs() {
-  return (
+export function NavigationTab() {
+  return(
     <Tab.Navigator
-      initialRouteName="Feed"
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === 'News') {
+            iconName = 'ios-list-box';
+          } else if (route.name === 'Treatment') {
+            iconName = 'ios-beaker';
+          } else if (route.name === 'Trials') {
+            iconName = 'md-medkit';
+          }else if (route.name === 'Info') {
+            iconName = focused ? 'ios-information-circle' : 'ios-information-circle-outline';
+          }
+
+          // You can return any component that you like here!
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+      })}
       tabBarOptions={{
         activeTintColor: 'tomato',
+        inactiveTintColor: 'gray',
       }}
     >
-      <Tab.Screen
-        name="Feed"
-        component={Feed}
-        options={{
-          tabBarLabel: 'Home',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Notifications"
-        component={Notifications}
-        options={{
-          tabBarLabel: 'Updates',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="bell" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={Profile}
-        options={{
-          tabBarLabel: 'Profile',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account" color={color} size={size} />
-          ),
-        }}
-      />
+      <Tab.Screen name="News" component={NewsPage} />
+      <Tab.Screen name="Treatment" component={TreatmentPage} />
+      <Tab.Screen name="Trials" component={TrialsPage} />
+      <Tab.Screen name="Info" component={InfoPage} />
     </Tab.Navigator>
-  );
+  )
 }
 
+const Stack = createStackNavigator()
+
 export default function App() {
+  const [user, setUser] = React.useState(null);
   return (
     <NavigationContainer>
-      <MyTabs />
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Login" component={LoginPage} />
+        <Stack.Screen name="Landing" component={NavigationTab} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
