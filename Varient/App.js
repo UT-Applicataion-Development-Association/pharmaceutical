@@ -10,6 +10,7 @@ import NewsPage from "./NewsPage.js";
 import TreatmentPage from "./TreatmentPage.js";
 import InfoPage from "./InfoPage.js";
 import TrialsPage from "./TrialsPage.js"
+import SettingPage from "./SettingPage.js"
 
 const Tab = createBottomTabNavigator();
 export function NavigationTab() {
@@ -27,6 +28,8 @@ export function NavigationTab() {
             iconName = 'md-medkit';
           }else if (route.name === 'Info') {
             iconName = focused ? 'ios-information-circle' : 'ios-information-circle-outline';
+          }else if (route.name === 'Setting') {
+            iconName = 'ios-settings';
           }
 
           // You can return any component that you like here!
@@ -42,6 +45,7 @@ export function NavigationTab() {
       <Tab.Screen name="Treatment" component={TreatmentPage} />
       <Tab.Screen name="Trials" component={TrialsPage} />
       <Tab.Screen name="Info" component={InfoPage} />
+      <Tab.Screen name="Setting" component={SettingPage} />
     </Tab.Navigator>
   )
 }
