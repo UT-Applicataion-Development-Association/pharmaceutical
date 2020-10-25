@@ -6,7 +6,6 @@ import { getFocusedRouteNameFromRoute, NavigationContainer } from "@react-naviga
 
 import LoginPage from "./LoginPage";
 import SignupPage from "./SignupPage";
-
 import NewsPage from "./NewsPage";
 import TreatmentPage from "./TreatmentPage";
 import InfoPage from "./InfoPage";
@@ -95,6 +94,7 @@ export function MainScreen() {
         </MainTab.Navigator>
     )
 }
+
 const RootStack = createStackNavigator();
 export default function App() {
     const [state, dispatch] = React.useReducer(
@@ -141,6 +141,5 @@ export default function App() {
             </NavigationContainer>
         </AuthContext.Provider>
     );
-
 }
 

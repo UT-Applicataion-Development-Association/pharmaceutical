@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View, Button,StyleSheet, TextInput } from "react-native";
 import AuthContext from "./contexts/AuthContext";
+
 class LoginPage extends React.Component {
   
     constructor(props) {
