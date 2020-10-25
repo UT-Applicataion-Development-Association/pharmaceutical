@@ -6,6 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
 
 import LoginPage from "./LoginPage.js";
+import SignupPage from "./SignupPage.js";
 import NewsPage from "./NewsPage.js";
 import TreatmentPage from "./TreatmentPage.js";
 import InfoPage from "./InfoPage.js";
@@ -54,6 +55,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginPage} />
+        <Stack.Screen name="Signup" component={SignupPage} />
         <Stack.Screen name="Landing" component={NavigationTab} />
       </Stack.Navigator>
     </NavigationContainer>
