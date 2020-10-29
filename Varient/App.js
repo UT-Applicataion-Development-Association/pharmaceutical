@@ -7,7 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import LoginPage from "./LoginPage.js";
 import NewsPage from "./NewsPage.js";
-import TreatmentPage from "./TreatmentPage.js";
+import TreatmentPageStack from "./components/TreatmentComponents/TreatmentPageStack";
 import InfoPage from "./InfoPage.js";
 import TrialsPage from "./TrialsPage.js"
 
@@ -39,7 +39,7 @@ export function NavigationTab() {
       }}
     >
       <Tab.Screen name="News" component={NewsPage} />
-      <Tab.Screen name="Treatment" component={TreatmentPage} />
+      <Tab.Screen name="Treatment" component={TreatmentPageStack} />
       <Tab.Screen name="Trials" component={TrialsPage} />
       <Tab.Screen name="Info" component={InfoPage} />
     </Tab.Navigator>
