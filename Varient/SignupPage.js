@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, Button,StyleSheet, TextInput, Linking } from "react-native";
-
-class LoginPage extends React.Component {
+import AuthContext from "./contexts/AuthContext";
+class SignupPage extends React.Component {
 
     constructor(props) {
       super(props);
@@ -13,7 +13,7 @@ class LoginPage extends React.Component {
         errorMessage: "",
       };
     }
-
+    static contextType = AuthContext;
     _inputCheck = () => {
       const { username, password,reenterPassword } = this.state;
 
@@ -43,7 +43,8 @@ class LoginPage extends React.Component {
             password:"",
             reenterPassword:""
           });
-          this.props.navigation.navigate("Landing");
+          // this.props.navigation.navigate("Landing");
+          this.context.signIn({});
 
         } else{
           // TODO: catch other errors and return approperiate error message.
@@ -130,4 +131,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default LoginPage;
+export default SignupPage;
