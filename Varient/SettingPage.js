@@ -1,7 +1,20 @@
 import React from "react";
-
-import {Text, Thumbnail, Container, Content, Button, Icon, Toast, Root} from 'native-base'
-import {View, Image, StyleSheet, Alert} from 'react-native';
+import {
+    List,
+    Container,
+    Content,
+    Button,
+    ListItem,
+    Text,
+    Icon,
+    Left,
+    Body,
+    Right,
+    Picker
+} from 'native-base';
+import {Col} from 'react-native-easy-grid';
+// import {Text, Thumbnail, Container, Content, Button, Icon, Toast, Root} from 'native-base'
+import {Image, StyleSheet, Alert} from 'react-native';
 
 const styles = StyleSheet.create({
     header: {
@@ -28,45 +41,131 @@ class SettingPage extends React.Component {
         userImage: "https://i.pinimg.com/originals/ce/5d/03/ce5d0338d3cb37c097e49e40ca458a49.jpg",
         userAge: 19,
         userPassword: "",
-        showToast: false
-
+        showToast: false,
+        notification: "all the time",
+        privacy: "visible to others"
     }
 
     render() {
         return (
-            <Container style={{alignItems: "center"}}>
-
-                <Image
-                    style={styles.userImage}
-                    onClick={() => this.changeUserImage()}
-                    source={{uri: this.state.userImage,}}>
-                </Image>
-
-                <Text>User Name: {this.state.userName}</Text>
-                <Text>User Age: {this.state.userAge}</Text>
-
+            <Container>
+                <Col style={{alignItems: "center"}}>
+                    <Image
+                        style={styles.userImage}
+                        onClick={() => this.changeUserImage()}
+                        source={{uri: this.state.userImage,}}>
+                    </Image>
+                </Col>
                 <Content>
+                    <List>
+                        {/*username*/}
+                        <ListItem icon>
+                            <Left>
+                                <Icon name='people' style={{color: 'gray'}}/>
+                            </Left>
+                            <Body>
+                                <Text>User Name: </Text>
+                            </Body>
+                            <Right>
+                                <Button transparent onPress={() => this.changeUserName()}
+                                        style={{color: 'blue'}}>
+                                    <Text>{this.state.userName}</Text>
+                                    <Icon name="arrow-forward"/>
+                                </Button>
+                            </Right>
+                        </ListItem>
+                        {/*password*/}
+                        <ListItem icon>
+                            <Left>
+                                <Icon name='lock' style={{color: 'gray'}}/>
+                            </Left>
+                            <Body>
+                                <Text>password: </Text>
+                            </Body>
+                            <Right>
+                                <Button transparent onPress={() => this.changePassword()}
+                                        style={{color: 'blue'}}>
+                                    <Text>{'*******'}</Text>
+                                    <Icon name="arrow-forward"/>
+                                </Button>
+                            </Right>
+                        </ListItem>
 
-                    <Button transparent onPress={() => this.changeUserName()}
-                            style={{alignSelf: 'center'}}>
-                        {/*<Icon name='people' />*/}
-                        <Text>Change Name</Text>
-                    </Button>
-                    <Button transparent onPress={() => this.changeUserAge()}
-                            style={{alignSelf: 'center'}}>
-                        {/*<Icon name='home' />*/}
-                        <Text>Change Age</Text>
-                    </Button>
-                    <Button transparent onPress={() => this.changePassword()}
-                            style={{alignSelf: 'center'}}>
-                        {/*<Icon name='lock' />*/}
-                        <Text>Change Passward</Text>
-                    </Button>
+                        {/*age*/}
+                        <ListItem icon>
+                            <Left>
+                                <Icon name='ios-information-circle' style={{color: 'gray'}}/>
+                            </Left>
+                            <Body>
+                                <Text>age: </Text>
+                            </Body>
+                            <Right>
+                                <Button transparent onPress={() => this.changeUserAge()}
+                                        style={{color: 'blue'}}>
+                                    <Text>{this.state.userAge}</Text>
+                                    <Icon name="arrow-forward"/>
+                                </Button>
+                            </Right>
+                        </ListItem>
 
+                        {/*notification*/}
+                        <ListItem icon>
+                            <Left>
+                                <Icon name='notifications' style={{color: 'gray'}}/>
+                            </Left>
+                            <Body>
+                                <Text>Notifications: </Text>
+                            </Body>
+                            <Right>
+                                <Picker
+                                    mode="dropdown"
+                                    iosIcon={<Icon name="arrow-down" />}
+                                    style={{ width: undefined }}
+                                    placeholder="notification"
+                                    placeholderStyle={{ color: "#bfc6ea" }}
+                                    placeholderIconColor="#007aff"
+                                    selectedValue={this.state.notification}
+                                    onValueChange={(v)=>{this.setState({notification: v})}}
+                                >
+                                    <Picker.Item label="voice and wave" value="voice and wave" />
+                                    <Picker.Item label="only wave" value="only wave" />
+                                    <Picker.Item label="silence" value="silence" />
+                                </Picker>
+                            </Right>
+                        </ListItem>
+
+                        {/*privacy*/}
+                        <ListItem icon>
+                            <Left>
+                                <Icon name='hand' style={{color: 'gray'}}/>
+                            </Left>
+                            <Body>
+                                <Text>Privacy: </Text>
+                            </Body>
+                            <Right>
+                                <Picker
+                                    mode="dropdown"
+                                    iosIcon={<Icon name="arrow-down" />}
+                                    style={{ width: undefined }}
+                                    placeholder="Select your SIM"
+                                    placeholderStyle={{ color: "#bfc6ea" }}
+                                    placeholderIconColor="#007aff"
+                                    selectedValue={this.state.privacy}
+                                    onValueChange={(v)=>{this.setState({privacy: v})}}
+                                >
+                                    <Picker.Item label="visible to others" value="visible to others" />
+                                    <Picker.Item label="invisible to others" value="visible to others" />
+                                    <Picker.Item label="only visible to doctors" value="visible to others" />
+                                </Picker>
+                            </Right>
+                        </ListItem>
+                    </List>
                 </Content>
+
             </Container>
 
-        );
+
+    );
     }
 
     changeUserName() {
@@ -146,7 +245,11 @@ class SettingPage extends React.Component {
         );
         console.log("Passward changed")
     }
-}
+
+    changeNotification(){
+        console.log("changeNotification");
+    }
+    }
 
 
-export default SettingPage; 
+    export default SettingPage;
