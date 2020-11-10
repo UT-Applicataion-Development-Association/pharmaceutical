@@ -10,6 +10,7 @@ import NewsPage from "./NewsPage";
 import TreatmentPage from "./TreatmentPage";
 import InfoPage from "./InfoPage";
 import TrialsPage from "./TrialsPage";
+import SettingPage from "./SettingPage"
 import AuthContext from "./contexts/AuthContext";
 
 function getHeaderTitle(route) {
@@ -53,6 +54,15 @@ export function InfoScreen() {
     )
 }
 
+const SettingStack = createStackNavigator();
+export function SettingScreen() {
+    return (
+        <InfoStack.Navigator>
+            <InfoStack.Screen name="Setting" component={SettingPage} />
+        </InfoStack.Navigator>
+    )
+}
+
 const MainTab = createBottomTabNavigator();
 export function MainScreen() {
     return (
@@ -74,6 +84,9 @@ export function MainScreen() {
                             case "Info":
                                 iconName = focused ? "ios-information-circle" : "ios-information-circle-outline";
                                 break;
+                            case "Setting":
+                                iconName = "ios-settings";
+                                break;
                             default:
                                 console.log("Invalid focused tab");
                                 throw "Invalid focused tab";
@@ -92,6 +105,7 @@ export function MainScreen() {
                 <MainTab.Screen name="Treatment" component={TreatmentScreen} />
                 <MainTab.Screen name="Trials" component={TrialsScreen} />
                 <MainTab.Screen name="Info" component={InfoScreen} />
+                <MainTab.Screen name="Setting" component={SettingScreen} />
             </MainTab.Navigator>
         </Root>
     )
