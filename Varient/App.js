@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
+import { Root } from  "native-base"
 
 import LoginPage from "./LoginPage.js";
 import NewsPage from "./NewsPage.js";
@@ -15,6 +16,7 @@ import SettingPage from "./SettingPage.js"
 const Tab = createBottomTabNavigator();
 export function NavigationTab() {
   return(
+  <Root>
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
@@ -47,6 +49,7 @@ export function NavigationTab() {
       <Tab.Screen name="Info" component={InfoPage} />
       <Tab.Screen name="Setting" component={SettingPage} />
     </Tab.Navigator>
+  </Root>
   )
 }
 

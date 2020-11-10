@@ -1,8 +1,7 @@
 import React from "react";
 
-// import { Text} from 'native-base'
-import { View, Image, Text, StyleSheet, Button, Alert } from 'react-native';
-
+import {Text, Thumbnail, Container, Content, Button, Icon, Toast, Root} from 'native-base'
+import {View, Image, StyleSheet, Alert} from 'react-native';
 
 const styles = StyleSheet.create({
     header: {
@@ -12,59 +11,65 @@ const styles = StyleSheet.create({
         top: 2
     },
     userImage: {
+        margin: 10,
+        marginTop: 50,
         width: 150,
         height: 150,
         borderRadius: 100,
         overflow: "hidden",
         borderWidth: 2,
         borderColor: "white"
-    }
+    },
 });
 
 class SettingPage extends React.Component {
+    state = {
+        userName: "Alice",
+        userImage: "https://i.pinimg.com/originals/ce/5d/03/ce5d0338d3cb37c097e49e40ca458a49.jpg",
+        userAge: 19,
+        userPassword: "",
+        showToast: false
+
+    }
 
     render() {
-        // const userImage = this.props.userImage
-        // const userName = this.props.userName
-        const userImage = "https://i.pinimg.com/originals/ce/5d/03/ce5d0338d3cb37c097e49e40ca458a49.jpg"
-        const userName = "Alice"
-        const userAge = 19
-        const userPassword = ""
         return (
-            <View
-                style={{
-                    flex: 1,
-                    justifyContent: "center",
-                    alignItems: "center"
-                }}
-            >
-                <Text style={styles.header}>Setting page</Text>
+            <Container style={{alignItems: "center"}}>
 
                 <Image
                     style={styles.userImage}
                     onClick={() => this.changeUserImage()}
-                    source={{ uri: userImage, }} />
+                    source={{uri: this.state.userImage,}}>
+                </Image>
 
-                <Text>User Name: {userName}</Text>
-                <Text>User Age: {userAge}</Text>
+                <Text>User Name: {this.state.userName}</Text>
+                <Text>User Age: {this.state.userAge}</Text>
 
-                <View>
-                    <Button
-                        title="Change Name"
-                        onPress={() => this.changeUserName(userName)} />
-                    <Button
-                        title="Change Age"
-                        onPress={() => this.changeUserAge()} />
-                    <Button
-                        title="Change Passward"
-                        onPress={this.changePassward} />
-                </View>
-            </View>
+                <Content>
+
+                    <Button transparent onPress={() => this.changeUserName()}
+                            style={{alignSelf: 'center'}}>
+                        {/*<Icon name='people' />*/}
+                        <Text>Change Name</Text>
+                    </Button>
+                    <Button transparent onPress={() => this.changeUserAge()}
+                            style={{alignSelf: 'center'}}>
+                        {/*<Icon name='home' />*/}
+                        <Text>Change Age</Text>
+                    </Button>
+                    <Button transparent onPress={() => this.changePassword()}
+                            style={{alignSelf: 'center'}}>
+                        {/*<Icon name='lock' />*/}
+                        <Text>Change Passward</Text>
+                    </Button>
+
+                </Content>
+            </Container>
 
         );
     }
 
-    changeUserName(oldUserName) {
+    changeUserName() {
         Alert.prompt(
             "Enter UserName",
             "Enter your new UserName",
@@ -76,8 +81,10 @@ class SettingPage extends React.Component {
                 },
                 {
                     text: "OK",
-                    onPress: username => console.log("OK Pressed, Username: " + username
-                    )
+                    onPress: username => {
+                        this.setState({userName: username})
+                    }
+
                 }
             ],
             "plain-text"
@@ -97,8 +104,17 @@ class SettingPage extends React.Component {
                 },
                 {
                     text: "OK",
-                    onPress: username => console.log("OK Pressed, Username: " + username
-                    )
+                    onPress: userAge => {
+                        if (!isNaN(userAge)) {
+                            this.setState({userAge: userAge})
+                            Toast.show({
+                                text: "Your Age is Changed",
+                                duration: 1000
+                            })
+                        } else {
+                            Alert.alert("Please enter a valid number")
+                        }
+                    }
                 }
             ],
             "plain-text"
@@ -107,10 +123,10 @@ class SettingPage extends React.Component {
     }
 
     changeUserImage() {
-        console.log("image changed")
+        this.props.navigation.navigate("Image")
     }
 
-    changePassward = () => {
+    changePassword = () => {
         Alert.prompt(
             "Enter password",
             "Enter your new password",
@@ -122,7 +138,7 @@ class SettingPage extends React.Component {
                 },
                 {
                     text: "OK",
-                    onPress: password => console.log("OK Pressed, password: " + password
+                    onPress: password => this.setState({userPassword: password}
                     )
                 }
             ],
