@@ -13,8 +13,8 @@ import {
     Picker
 } from 'native-base';
 import {Col} from 'react-native-easy-grid';
-// import {Text, Thumbnail, Container, Content, Button, Icon, Toast, Root} from 'native-base'
 import {Image, StyleSheet, Alert} from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
 
 const styles = StyleSheet.create({
     header: {
@@ -49,12 +49,14 @@ class SettingPage extends React.Component {
     render() {
         return (
             <Container>
-                <Col style={{alignItems: "center"}}>
-                    <Image
-                        style={styles.userImage}
-                        onClick={() => this.changeUserImage()}
-                        source={{uri: this.state.userImage,}}>
-                    </Image>
+                <Col style={{alignItems: "center", justifyContent: 'center'}}>
+                    <Button transparent onPress={this.pickImage}  style={{alignSelf:'center'}}>
+                        {this.state.userImage &&
+                        <Image
+                            style={styles.userImage}
+                            source={{uri: this.state.userImage,}}>
+                        </Image>}
+                    </Button>
                 </Col>
                 <Content>
                     <List>
@@ -161,12 +163,28 @@ class SettingPage extends React.Component {
                         </ListItem>
                     </List>
                 </Content>
-
             </Container>
-
-
-    );
+        );
     }
+
+    pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
+
+        console.log(result);
+
+        if (!result.cancelled) {
+            this.setImage(result.uri);
+        }
+    };
+
+    setImage = (v) => {
+        this.setState({userImage: v});
+    };
 
     changeUserName() {
         Alert.prompt(
@@ -221,10 +239,6 @@ class SettingPage extends React.Component {
         console.log("age changed")
     }
 
-    changeUserImage() {
-        this.props.navigation.navigate("Image")
-    }
-
     changePassword = () => {
         Alert.prompt(
             "Enter password",
@@ -246,10 +260,7 @@ class SettingPage extends React.Component {
         console.log("Passward changed")
     }
 
-    changeNotification(){
-        console.log("changeNotification");
-    }
-    }
+}
 
 
-    export default SettingPage;
+export default SettingPage;
