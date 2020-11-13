@@ -42,8 +42,8 @@ class SettingPage extends React.Component {
         userAge: 19,
         userPassword: "",
         showToast: false,
-        notification: "all the time",
-        privacy: "visible to others"
+        notification: null,
+        privacy: null
     }
 
     render() {
@@ -149,15 +149,15 @@ class SettingPage extends React.Component {
                                     mode="dropdown"
                                     iosIcon={<Icon name="arrow-down" />}
                                     style={{ width: undefined }}
-                                    placeholder="Select your SIM"
+                                    placeholder="Privacy"
                                     placeholderStyle={{ color: "#bfc6ea" }}
                                     placeholderIconColor="#007aff"
                                     selectedValue={this.state.privacy}
                                     onValueChange={(v)=>{this.setState({privacy: v})}}
                                 >
                                     <Picker.Item label="visible to others" value="visible to others" />
-                                    <Picker.Item label="invisible to others" value="visible to others" />
-                                    <Picker.Item label="only visible to doctors" value="visible to others" />
+                                    <Picker.Item label="invisible to others" value="invisible to others" />
+                                    <Picker.Item label="only visible to doctors" value="only visible to doctors" />
                                 </Picker>
                             </Right>
                         </ListItem>
