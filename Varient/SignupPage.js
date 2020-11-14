@@ -31,7 +31,7 @@ class LoginPage extends React.Component {
       await this._inputCheck();
       if ( !this.state.userInputError) {
         const { username, password } = this.state;
-        console.log("User [", username,"] attempted to sign up")
+        console.log("User [", username,"] has signed up")
 
         // TODO: create new user in database
         if(true){
@@ -84,9 +84,9 @@ class LoginPage extends React.Component {
         
             <Button 
               color="grey" 
-              title="By signing-up, I agree to the terms and conditions" 
+              title="By signing-up, I agree to the terms and conditions [learn more]" 
               onPress={() => Linking.openURL('http://google.com')} />
-              <Button title="Sign un!" onPress={() => this._handleSignup()} />
+              <Button title="Sign up!" onPress={() => this._handleSignup()} />
           </View>
         );
     }

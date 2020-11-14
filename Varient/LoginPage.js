@@ -27,7 +27,7 @@ class LoginPage extends React.Component {
       await this._inputCheck();
       if ( !this.state.userInputError) {
         const { username, password } = this.state;
-        console.log("User [", username,"] attempted to log in")
+        console.log("User [", username,"] has logged in")
 
         // TODO: check authentication credential
         if(true){
