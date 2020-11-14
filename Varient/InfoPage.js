@@ -25,7 +25,7 @@ class InfoPage extends React.Component {
                     </List>
                     <View style={{ marginTop: 10 }}>
                         <Text style={{ alignSelf: "center" }}>Version 0.1.0</Text>
-                        <Text style={{ alignSelf: "center" }}>Copyright Info</Text>
+                        <Text style={{ alignSelf: "center" }}>Copyright &copy; 2020</Text>
                     </View>
                 </Content>
             </Container>
