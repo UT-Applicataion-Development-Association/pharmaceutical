@@ -157,7 +157,7 @@ class SettingPage extends React.Component {
                                 >
                                     <Picker.Item label="visible to others" value="visible to others" />
                                     <Picker.Item label="invisible to others" value="invisible to others" />
-                                    <Picker.Item label="only visible to doctors" value="only visible to doctors" />
+                                    <Picker.Item label="visible to doctors" value="visible to doctors" />
                                 </Picker>
                             </Right>
                         </ListItem>
@@ -224,10 +224,10 @@ class SettingPage extends React.Component {
                     onPress: userAge => {
                         if (!isNaN(userAge)) {
                             this.setState({userAge: userAge})
-                            Toast.show({
-                                text: "Your Age is Changed",
-                                duration: 1000
-                            })
+                            // Toast.show({
+                            //     text: "Your Age is Changed",
+                            //     duration: 1000
+                            // })
                         } else {
                             Alert.alert("Please enter a valid number")
                         }
