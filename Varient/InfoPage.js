@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Content, List, ListItem, Separator, Text, View } from "native-base";
+import { Linking } from "react-native";
 
 class InfoPage extends React.Component {
     render() {
@@ -10,16 +11,16 @@ class InfoPage extends React.Component {
                         <Separator bordered>
                             <Text>About</Text>
                         </Separator>
-                        <ListItem onPress={this._onPressListItem}>
+                        <ListItem onPress={() => this._showExternalWebsite("Terms and Conditions")}>
                             <Text>Terms and Conditions</Text>
                         </ListItem>
-                        <ListItem onPress={this._onPressListItem}>
+                        <ListItem onPress={() => this._showExternalWebsite("Private Policy")}>
                             <Text>Privacy Policy</Text>
                         </ListItem>
                         <Separator bordered>
                             <Text>Support</Text>
                         </Separator>
-                        <ListItem onPress={this._onPressListItem}>
+                        <ListItem onPress={() => this._showExternalWebsite("Contact")}>
                             <Text>Contact Varient</Text>
                         </ListItem>
                     </List>
@@ -32,9 +33,21 @@ class InfoPage extends React.Component {
         );
     }
 
-    _onPressListItem() {
-
+    _showExternalWebsite(target) {
+        var target_url;
+        if (target == "Terms and Conditions") {
+            target_url = TERMS_AND_CONDITIONS_URL;
+        } else if (target == "Private Policy") {
+            target_url = PRIVATE_POLICY_URL;
+        } else if (target == "Contact") {
+            target_url = CONTACT_URL;
+        }
+        Linking.openURL(target_url).catch((err) => console.error("An error occured when trying to open " + target + "."));
     }
 }
+
+const TERMS_AND_CONDITIONS_URL = "https://policies.google.com/terms";
+const PRIVATE_POLICY_URL = "https://policies.google.com/privacy";
+const CONTACT_URL = "https://policies.google.com/";
 
 export default InfoPage;

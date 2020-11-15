@@ -16,7 +16,7 @@ class NewsPage extends React.Component {
         return (
             <Container>
                 <Content>
-                    <View style={styles.greeting}>
+                    <View style={styles.greetingView}>
                         <Text style={styles.greetingText}>
                             Welcome back.{"\n"}
                             Here's an update on your variant.
@@ -31,17 +31,17 @@ class NewsPage extends React.Component {
                             </Text>
                         </CardItem>
                         <CardItem style={{ marginVertical: windowDim.height * 0.025 }}>
-                            <Icon type="FontAwesome" name="steam-square" />
+                            <Icon type="AntDesign" name="exception1" />
                             <Text style={{ flex: 1, flexWrap: "wrap" }}>
                                 <Text style={styles.highlightedText}>{this.state.newPatient_ExactVariant} new patients </Text>
                                 registered to Varient claiming a diagnosis with your exact genetic variant.
                             </Text>
                         </CardItem>
                         <CardItem style={{ marginVertical: windowDim.height * 0.025 }}>
-                            <Icon type="FontAwesome" name="steam" />
+                            <Icon type="AntDesign" name="exception1" />
                             <Text style={{ flex: 1, flexWrap: "wrap" }}>
                                 <Text style={styles.highlightedText}>{this.state.updatedPatient_ExactVariant} patients </Text>
-                                with your exact genetic variant updated their medication data.
+                                with your exact genetic variant have updated their medication data.
                             </Text>
                         </CardItem>
                     </Card>
@@ -56,7 +56,7 @@ class NewsPage extends React.Component {
 
 const windowDim = Dimensions.get('window');
 const styles = StyleSheet.create({
-    greeting: {
+    greetingView: {
         marginHorizontal: windowDim.width * 0.05,
         marginTop: windowDim.height * 0.1,
         marginBottom: windowDim.height * 0.05
