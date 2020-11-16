@@ -1,7 +1,10 @@
 import React from "react";
 import { Text, View, Button } from "react-native";
+import AuthContext from "./contexts/AuthContext";
 
 class LoginPage extends React.Component {
+    static contextType = AuthContext;
+
     render() {
         return (
             <View
@@ -13,7 +16,7 @@ class LoginPage extends React.Component {
             >
                 <Text style={{ fontSize: 30 }}>Welcome to Varient</Text>
                 <Button
-                    onPress={() => this.props.navigation.navigate("Landing")}
+                    onPress={() => this.context.signIn({})}
                     title="Login"
                 />
             </View>
