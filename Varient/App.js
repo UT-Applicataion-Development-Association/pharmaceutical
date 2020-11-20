@@ -12,12 +12,12 @@ import TreatmentGene2 from "./components/TreatmentComponents/TreatmentGene2";
 import InfoPage from "./InfoPage";
 import TrialsPage from "./TrialsPage";
 import AuthContext from "./contexts/AuthContext";
-/*
+
 function getHeaderTitle(route) {
-      return getFocusedRouteNameFromRoute(route) ?? 'Feed';
-   
+    // custom header title goes here
+    return getFocusedRouteNameFromRoute(route) ?? 'Feed';
 }
-*/
+
 const NewsStack = createStackNavigator();
 export function NewsScreen() {
     return (
@@ -133,7 +133,7 @@ export default function App() {
                             name="Landing"
                             component={MainScreen}
                             options={({ route }) => ({
-                                /*headerTitle: getHeaderTitle(route),*/
+                                headerTitle: getHeaderTitle(route),
                                 headerShown: false
                             })}
                         />
