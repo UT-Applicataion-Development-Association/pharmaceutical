@@ -12,12 +12,12 @@ import TreatmentGene2 from "./components/TreatmentComponents/TreatmentGene2";
 import InfoPage from "./InfoPage";
 import TrialsPage from "./TrialsPage";
 import AuthContext from "./contexts/AuthContext";
-
+/*
 function getHeaderTitle(route) {
       return getFocusedRouteNameFromRoute(route) ?? 'Feed';
    
 }
-
+*/
 const NewsStack = createStackNavigator();
 export function NewsScreen() {
     return (
@@ -27,21 +27,6 @@ export function NewsScreen() {
     )
 }
 
-function getTreatmentHeaderTitle(route) {
-    // If the focused route is not found, we need to assume it's the initial screen
-    // This can happen during if there hasn't been any navigation inside the screen
-    // In our case, it's "Feed" as that's the first screen inside the navigator
-    const routeName = getFocusedRouteNameFromRoute(route) ?? 'SelectPage';
-  
-    switch (routeName) {
-      case 'SelectPage':
-        return 'Variant';
-      case 'Gene1':
-        return 'Tried Treatments';
-      case 'Gene2':
-        return 'Tried Treatments';
-    }
-  }
 
 
 const TreatmentStack = createStackNavigator();
@@ -108,9 +93,7 @@ export function MainScreen() {
             }}
         >
             <MainTab.Screen name="News" component={NewsScreen} />
-            <MainTab.Screen name="Treatment" component={TreatmentScreen}    options={({ route }) => ({
-    headerTitle: getTreatmentHeaderTitle(route),
-  })}/>
+            <MainTab.Screen name="Treatment" component={TreatmentScreen}   />
             <MainTab.Screen name="Trials" component={TrialsScreen} />
             <MainTab.Screen name="Info" component={InfoScreen} />
         </MainTab.Navigator>
@@ -150,7 +133,8 @@ export default function App() {
                             name="Landing"
                             component={MainScreen}
                             options={({ route }) => ({
-                                headerTitle: getHeaderTitle(route),
+                                /*headerTitle: getHeaderTitle(route),*/
+                                headerShown: false
                             })}
                         />
                     ) : (

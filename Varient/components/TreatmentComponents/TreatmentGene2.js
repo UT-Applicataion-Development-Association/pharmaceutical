@@ -22,31 +22,32 @@ class TreatmentGene1 extends React.Component {
     };
   }
 
+  //Hardcoded this data for now
+
   treatmentList = () => {
-    return ["1. Lamotrigine", "2. Topiramate", "3. Memantine"];
+    let treatments = ["Lamotrigine", "Topiramate", "Memantine"];
+    let displayTreatments = [];
+    for (count =1; count<=treatments.length; count++){
+      displayTreatments.push({count: String(count), content: treatments[count-1]});
+    }
+    return displayTreatments;
   };
-/*
-  Item = ({ title }) => (
-    <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
-    </View>
-  );
-*/
 
 getImprovedNumber = (symptom) =>{
   //Hardcoded this part for demonstration
   switch (symptom){
-    case "1. Lamotrigine": return 2
-    case "2. Topiramate": return 9
-    case "3. Memantine": return 5
+    case "Lamotrigine": return 2
+    case "Topiramate": return 9
+    case "Memantine": return 5
   }
 }
 
 getTotalNumber = (symptom) =>{
+    //Hardcoded this part for demonstration
   switch (symptom){
-    case "1. Lamotrigine": return 5
-    case "2. Topiramate": return 10
-    case "3. Memantine": return 15
+    case "Lamotrigine": return 5
+    case "Topiramate": return 10
+    case "Memantine": return 15
   }
 }
 
@@ -73,74 +74,81 @@ getComment = (symptom) =>{
 
   generateTreatmentList = () => (
     <FlatList
-      renderItem={(obj) => (<View>
+      renderItem={(obj) => (<View style={{}}>
       <View style={{flex: 1, flexDirection: 'row'}}>
         <Text 
-        style={{padding: 10,  marginLeft: 35, textDecorationLine: "underline", fontWeight: "bold" }}>
-          {obj.item}
+        style={{padding: 10, textDecorationLine: "underline", fontWeight: "bold" }}>
+          {obj.item["count"]}. {obj.item["content"]}
           </Text>
           <View style={{ flex:1, flexDirection:"row", marginTop:15 }}>
-        <View style={{width: this.getGreenWidth(this.getPercentage(obj.item)), height: 15, backgroundColor: "lime", borderColor:"gray", borderWidth:0.5 }}>
+        <View style={{width: this.getGreenWidth(this.getPercentage(obj.item["content"])), height: 15, backgroundColor: "lime", borderColor:"gray", borderWidth:0.5 }}>
         </View>
-        <View style={{width: this.getRedWidth(this.getPercentage(obj.item)), height: 15, backgroundColor: "red", borderColor:"gray", borderWidth:0.5 }}>
+        <View style={{width: this.getRedWidth(this.getPercentage(obj.item["content"])), height: 15, backgroundColor: "red", borderColor:"gray", borderWidth:0.5 }}>
           </View>
           </View>
           </View>
 
           <View style={{}}>
-  <Text style = {{padding: 10, marginLeft: 25}}>{this.getImprovedNumber(obj.item)}/{this.getTotalNumber(obj.item)} patients' symptoms has improved </Text>
-  <Text style={{padding: 10, color: this.getComment(obj.item)}}>({String(this.getPercentage(obj.item).toFixed(2)*100)+"%"})</Text>
+  <Text style = {{padding: 10 }}>{this.getImprovedNumber(obj.item["content"])}/{this.getTotalNumber(obj.item["content"])} patients' symptoms has improved</Text>
+  <Text style={{padding: 10, color: this.getComment(obj.item["content"])}}>({String(this.getPercentage(obj.item["content"]).toFixed(2)*100)+"%"})</Text>
   </View>
 
           </View>)}
       data={this.treatmentList()}
     />
   );
-  
-    generateDataArray = () => {
-      return [
-        { title: "Epilepsy", content: this.generateTreatmentList() },
-        { title: "Hypotonia", content: this.generateTreatmentList() },
-        { title: "Spasticity", content: this.generateTreatmentList() },
-      ];
-    };
-  
-    _renderHeader = (item, expanded) => {
-      return (
-        <View
-          style={{
-            flexDirection: "row",
-            padding: 20,
-            //justifyContent: "space-between",
-            margin: 5,
-            alignItems: "center",
-            backgroundColor: "#A9DAD6",
-          }}
-        >
-          <Text style={{ fontWeight: "bold", paddingRight: 3 }}> {item.title}</Text>
-          {expanded ? (
-            <Icon style={{ fontSize: 18 }} name="remove-circle" />
-          ) : (
-            <Icon style={{ fontSize: 18 }} name="add-circle" />
-          )}
-        </View>
-      );
-    };
-  
-    _renderContent = (item) => {
-      return (
-        <Text
-          style={{
-            backgroundColor: "#e3f1f1",
-            padding: 10,
-            fontStyle: "italic",
-            margin: 5,
-          }}
-        >
-          {item.content}
-        </Text>
-      );
-    };
+
+  symptomList = () => {
+    return ["Epilepsy", "Hypotonia", "Spasticity"];
+  }
+
+  generateDataArray = () => {
+    let symptoms = this.symptomList();
+    let dataList = [];
+    let symptom;
+    for (symptom of symptoms){
+      dataList.push({title: symptom, content: this.generateTreatmentList()});
+    }
+    return dataList;
+  };
+
+  _renderHeader = (item, expanded) => {
+    return (
+      <View
+        style={{
+          flexDirection: "row",
+          padding: 20,
+          //justifyContent: "space-between",
+          margin: 5,
+          alignItems: "center",
+          backgroundColor: "#A9DAD6",
+        }}
+      >
+        <Text style={{ fontWeight: "bold", paddingRight: 3 }}> {item.title}</Text>
+        {expanded ? (
+          <Icon style={{ fontSize: 18 }} name="remove-circle" />
+        ) : (
+          <Icon style={{ fontSize: 18 }} name="add-circle" />
+        )}
+      </View>
+    );
+  };
+
+  _renderContent = (item) => {
+    return (
+      <Text
+        style={{
+          backgroundColor: "#e3f1f1",
+          padding: 10,
+          fontStyle: "italic",
+          margin: 5,
+        }}
+      >
+        {item.content}
+      </Text>
+    );
+  };
+
   
   render() {
     return (
