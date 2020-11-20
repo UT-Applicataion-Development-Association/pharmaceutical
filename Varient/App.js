@@ -13,10 +13,12 @@ import InfoPage from "./InfoPage";
 import TrialsPage from "./TrialsPage";
 import AuthContext from "./contexts/AuthContext";
 
+/*
 function getHeaderTitle(route) {
     // custom header title goes here
     return getFocusedRouteNameFromRoute(route) ?? 'Feed';
 }
+*/
 
 const NewsStack = createStackNavigator();
 export function NewsScreen() {
@@ -133,7 +135,7 @@ export default function App() {
                             name="Landing"
                             component={MainScreen}
                             options={({ route }) => ({
-                                headerTitle: getHeaderTitle(route),
+                                //headerTitle: getHeaderTitle(route),
                                 headerShown: false
                             })}
                         />
