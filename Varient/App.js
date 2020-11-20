@@ -14,14 +14,6 @@ import TrialsPage from "./TrialsPage";
 import AuthContext from "./contexts/AuthContext";
 
 function getHeaderTitle(route) {
-    // custom header title goes here
-/*    const routeName= getFocusedRouteNameFromRoute(route) ?? 'Feed';
-    switch (routeName) {
-        case 'Treatment':
-
-        default:
-            return routeName;
-      }*/
       return getFocusedRouteNameFromRoute(route) ?? 'Feed';
    
 }

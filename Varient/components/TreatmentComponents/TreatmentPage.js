@@ -6,21 +6,25 @@ import { color } from "react-native-reanimated";
 
 const styles = StyleSheet.create({
   intro: {
-    fontSize: 20,
+    fontSize: 25,
     paddingBottom: 30,
+    textAlign: 'center'
     //alignItems: "center"
+    //paddingLeft: 10,
+    //paddingRight: 10
   },
   gene: {
+    fontSize: 25,
     fontWeight: "bold",
   },
   genebtn: {
-    fontWeight: "bold",
+    fontWeight: "bold",   
   },
   layout: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "gray",
+    backgroundColor: "white",
     marginLeft: 5,
     marginRight: 5,
   },
@@ -46,15 +50,16 @@ class TreatmentPage extends React.Component {
     return (
       <View style={styles.layout}>
         <Container style={styles.layout}>
+          <Text style={{ fontSize:30, fontWeight:"bold", color:"green", textAlign: 'center', top:0, paddingBottom:50}}>Pick the trial data that you want to view</Text>
           {/* First display*/}
-          <View style={{ paddingBottom: 50 }}>
+          <View style={{ paddingBottom: 25 }}>
             <Text style={styles.intro}>
               Your variant is in the gene <Text style={styles.gene}>GRIN1</Text>
             </Text>
 
             <Button
               iconLeft
-              style={{ backgroundColor: "green" }}
+              style={{ backgroundColor: "green", borderRadius: 100, alignSelf: "center" }}
               onPress={() =>
                 this.props.navigation.navigate("Gene1", { gene1: "GRIN1" })
               }
@@ -74,7 +79,7 @@ class TreatmentPage extends React.Component {
 
             <Button
               iconLeft
-              style={{ alignSelf: "center", backgroundColor: "green" }}
+              style={{ alignSelf: "center", backgroundColor: "green", borderRadius:100 }}
               onPress={() =>
                 this.props.navigation.navigate("Gene2", {
                   gene2: "GRIN1",
