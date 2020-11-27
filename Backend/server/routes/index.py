@@ -1,5 +1,5 @@
 from flask import request, Blueprint
-
+from flask_cors import cross_origin
 indexRoutes = Blueprint('indexRoutes', __name__)
 
 

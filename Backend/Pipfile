@@ -4,7 +4,6 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-black = "*"
 isort = "*"
 pre-commit = "*"
 flake8 = "*"
@@ -13,12 +12,13 @@ pytest = "*"
 
 [packages]
 flask = "*"
-dotenv = "*"
+python-dotenv = "*"
+flask-cors = '*'
 
 
 
 [requires]
-python_version = "3.6"
+python_version = "3.8"
 
 [scripts]
 test = "python -m unittest"
