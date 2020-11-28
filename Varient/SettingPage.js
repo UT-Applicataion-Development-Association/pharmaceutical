@@ -25,10 +25,9 @@ const styles = StyleSheet.create({
     },
     userImage: {
         margin: 10,
-        marginTop: 50,
         width: 150,
         height: 150,
-        borderRadius: 100,
+        // borderRadius: 100,
         overflow: "hidden",
         borderWidth: 2,
         borderColor: "white"
@@ -188,8 +187,8 @@ class SettingPage extends React.Component {
 
     changeUserName() {
         Alert.prompt(
-            "Enter UserName",
             "Enter your new UserName",
+            "",
             [
                 {
                     text: "Cancel",
@@ -211,8 +210,8 @@ class SettingPage extends React.Component {
 
     changeUserAge() {
         Alert.prompt(
-            "Enter Age",
-            "Enter your new UserName",
+            "Enter your Age",
+            "",
             [
                 {
                     text: "Cancel",
@@ -241,8 +240,8 @@ class SettingPage extends React.Component {
 
     changePassword = () => {
         Alert.prompt(
-            "Enter password",
             "Enter your new password",
+            "",
             [
                 {
                     text: "Cancel",
