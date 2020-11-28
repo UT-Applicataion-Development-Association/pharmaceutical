@@ -1,63 +1,146 @@
-import * as React from 'react';
-import { Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+import * as React from "react";
+import { Ionicons } from "@expo/vector-icons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from '@react-navigation/native';
+import { getFocusedRouteNameFromRoute, NavigationContainer } from "@react-navigation/native";
 
-import LoginPage from "./LoginPage.js";
-import SignupPage from "./SignupPage.js";
-import NewsPage from "./NewsPage.js";
-import TreatmentPage from "./TreatmentPage.js";
-import InfoPage from "./InfoPage.js";
-import TrialsPage from "./TrialsPage.js"
+import LoginPage from "./LoginPage";
+import SignupPage from "./SignupPage";
+import NewsPage from "./NewsPage";
+import TreatmentPage from "./TreatmentPage";
+import InfoPage from "./InfoPage";
+import TrialsPage from "./TrialsPage";
+import AuthContext from "./contexts/AuthContext";
 
-const Tab = createBottomTabNavigator();
-export function NavigationTab() {
-  return(
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-
-          if (route.name === 'News') {
-            iconName = 'ios-list-box';
-          } else if (route.name === 'Treatment') {
-            iconName = 'ios-beaker';
-          } else if (route.name === 'Trials') {
-            iconName = 'md-medkit';
-          }else if (route.name === 'Info') {
-            iconName = focused ? 'ios-information-circle' : 'ios-information-circle-outline';
-          }
-
-          // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-      })}
-      tabBarOptions={{
-        activeTintColor: 'tomato',
-        inactiveTintColor: 'gray',
-      }}
-    >
-      <Tab.Screen name="News" component={NewsPage} />
-      <Tab.Screen name="Treatment" component={TreatmentPage} />
-      <Tab.Screen name="Trials" component={TrialsPage} />
-      <Tab.Screen name="Info" component={InfoPage} />
-    </Tab.Navigator>
-  )
+function getHeaderTitle(route) {
+    // custom header title goes here
+    return getFocusedRouteNameFromRoute(route) ?? 'Feed';
 }
 
-const Stack = createStackNavigator()
+const NewsStack = createStackNavigator();
+export function NewsScreen() {
+    return (
+        <NewsStack.Navigator>
+            <NewsStack.Screen name="News" component={NewsPage} />
+        </NewsStack.Navigator>
+    )
+}
 
+const TreatmentStack = createStackNavigator();
+export function TreatmentScreen() {
+    return (
+        <TreatmentStack.Navigator>
+            <TreatmentStack.Screen name="Treatment" component={TreatmentPage} />
+        </TreatmentStack.Navigator>
+    )
+}
+
+const TrialsStack = createStackNavigator();
+export function TrialsScreen() {
+    return (
+        <TrialsStack.Navigator>
+            <TrialsStack.Screen name="Trials" component={TrialsPage} />
+        </TrialsStack.Navigator>
+    )
+}
+
+const InfoStack = createStackNavigator();
+export function InfoScreen() {
+    return (
+        <InfoStack.Navigator>
+            <InfoStack.Screen name="Info" component={InfoPage} />
+        </InfoStack.Navigator>
+    )
+}
+
+const MainTab = createBottomTabNavigator();
+export function MainScreen() {
+    return (
+        <MainTab.Navigator
+            screenOptions={({ route }) => ({
+                tabBarIcon: ({ focused, color, size }) => {
+                    let iconName;
+                    switch (route.name) {
+                        case "News":
+                            iconName = "ios-list-box";
+                            break;
+                        case "Treatment":
+                            iconName = "ios-beaker";
+                            break;
+                        case "Trials":
+                            iconName = "md-medkit";
+                            break;
+                        case "Info":
+                            iconName = focused ? "ios-information-circle" : "ios-information-circle-outline";
+                            break;
+                        default:
+                            console.log("Invalid focused tab");
+                            throw "Invalid focused tab";
+                    }
+
+                    // You can return any component that you like here!
+                    return <Ionicons name={iconName} size={size} color={color} />;
+                },
+            })}
+            tabBarOptions={{
+                activeTintColor: "tomato",
+                inactiveTintColor: "gray",
+            }}
+        >
+            <MainTab.Screen name="News" component={NewsScreen} />
+            <MainTab.Screen name="Treatment" component={TreatmentScreen} />
+            <MainTab.Screen name="Trials" component={TrialsScreen} />
+            <MainTab.Screen name="Info" component={InfoScreen} />
+        </MainTab.Navigator>
+    )
+}
+
+const RootStack = createStackNavigator();
 export default function App() {
-  const [user, setUser] = React.useState(null);
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Login" component={LoginPage} />
-        <Stack.Screen name="Signup" component={SignupPage} />
-        <Stack.Screen name="Landing" component={NavigationTab} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+    const [state, dispatch] = React.useReducer(
+        (prevState, action) => {
+            switch (action.type) {
+                case "SignIn":
+                    return {
+                        ...prevState,
+                        hasAuth: true,
+                    };
+                default:
+                    console.log("Invalid auth action");
+                    throw "Invalid auth action";
+            }
+        },
+        {
+            hasAuth: false,
+        }
+    );
+
+    return (
+        <AuthContext.Provider
+            value={{
+                signIn: data => dispatch({ type: "SignIn" }),
+            }}
+        >
+            <NavigationContainer>
+                <RootStack.Navigator>
+                    {state.hasAuth ? (
+                        <RootStack.Screen
+                            name="Landing"
+                            component={MainScreen}
+                            options={({ route }) => ({
+                                headerTitle: getHeaderTitle(route),
+                            })}
+                        />
+                    ) : (
+                        <>
+                            <RootStack.Screen name="Login" component={LoginPage} />
+                            <RootStack.Screen name="Signup" component={SignupPage} />
+                        </>
+
+                    )}
+                </RootStack.Navigator>
+            </NavigationContainer>
+        </AuthContext.Provider>
+    );
 }
