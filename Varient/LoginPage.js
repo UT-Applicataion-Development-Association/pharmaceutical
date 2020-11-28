@@ -1,8 +1,8 @@
 import React from "react";
 import { Text, View, Button,StyleSheet, TextInput } from "react-native";
-
+import AuthContext from "./contexts/AuthContext";
 class LoginPage extends React.Component {
-
+  
     constructor(props) {
       super(props);
       this.state = {
@@ -12,6 +12,8 @@ class LoginPage extends React.Component {
         errorMessage: "",
       };
     }
+
+    static contextType = AuthContext;
 
     _inputCheck = () => {
 
@@ -38,7 +40,8 @@ class LoginPage extends React.Component {
             username:"",
             password:""
           });
-          this.props.navigation.navigate("Landing");
+          this.context.signIn({})
+          // this.props.navigation.navigate("Landing");
 
         } else{
           // TODO: catch other errors and return approperiate error message.
