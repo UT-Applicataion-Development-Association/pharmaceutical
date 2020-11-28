@@ -60,7 +60,6 @@ class LoginPage extends React.Component {
               <Text style={styles.errorMessage}>
                   {this.state.errorMessage}
               </Text>
-
             </View>
             <TextInput style={styles.textInput}
               placeholder="Username"
