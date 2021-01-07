@@ -11,5 +11,5 @@ class Config:
     """Set Flask config variables"""
     SECRET_KEY = environ.get('SECRET_KEY')
     PERMANENT_SESSION_LIFETIME = timedelta(days=float(environ.get('PERMANENT_SESSION_LIFETIME')))
-    SQLALCHEMY_DATABASE_URI = path.join(basedir, 'db', environ.get('SQLALCHEMY_DATABASE_URI'))
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + path.join(basedir, 'db', environ.get('SQLALCHEMY_DATABASE_URI'))
     TESTING = True
