@@ -6,9 +6,9 @@ import { getFocusedRouteNameFromRoute, NavigationContainer } from "@react-naviga
 
 import LoginPage from "./LoginPage";
 import NewsPage from "./NewsPage";
-import TreatmentPage from "./components/TreatmentComponents/TreatmentPage";
-import TreatmentGene1 from "./components/TreatmentComponents/TreatmentGene1";
-import TreatmentGene2 from "./components/TreatmentComponents/TreatmentGene2";
+import TreatmentPage from "./components/Treatment/TreatmentPage";
+import TreatmentGene1 from "./components/Treatment/TreatmentGene1";
+import TreatmentGene2 from "./components/Treatment/TreatmentGene2";
 import InfoPage from "./InfoPage";
 import TrialsPage from "./TrialsPage";
 import AuthContext from "./contexts/AuthContext";
