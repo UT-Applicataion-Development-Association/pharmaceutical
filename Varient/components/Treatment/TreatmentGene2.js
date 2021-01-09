@@ -161,7 +161,6 @@ class TreatmentGene1 extends React.Component {
         style={{
           flexDirection: "row",
           padding: 20,
-          //justifyContent: "space-between",
           margin: 5,
           alignItems: "center",
           backgroundColor: "#A9DAD6",
@@ -200,7 +199,6 @@ class TreatmentGene1 extends React.Component {
       <Container>
         <ScrollView>
           <Content padder style={{ backgroundColor: "white" }}>
-            {/*       <Content padder style={{ backgroundColor: "white" }}>*/}
 
             <Text
               style={{ padding: 20, justifyContent: "center", fontSize: 30 }}
@@ -240,7 +238,7 @@ class TreatmentGene1 extends React.Component {
               renderContent={this._renderContent}
               style={{ borderColor: "white" }}
             />
-            {/*        </Content>   */}
+
           </Content>
         </ScrollView>
       </Container>
