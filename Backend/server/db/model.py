@@ -39,7 +39,7 @@ class Clinician(db.Model):
 class Gene(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    parentId = db.Column(db.Integer)
+    parentId = db.Column(db.Integer, db.ForeignKey(id))
 
     def __init__(self, name, parentId):
         self.name = name
@@ -68,20 +68,20 @@ class Symptom(db.Model):
         self.name = name
 
     def __str__(self):
-        str_repr(self)
+        return str_repr(self)
 
 
 class MedicationRelationship(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     medicationId = db.Column(db.Integer, db.ForeignKey(Medication.id), nullable=False)
     symptomId = db.Column(db.Integer, db.ForeignKey(Symptom.id), nullable=False)
-    effectiveness = db.Column(db.Integer)
+    effectiveness = db.Column(db.Integer, nullable=False)
 
     def __init__(self, effectiveness=None):
         self.effectiveness = effectiveness
 
     def __str__(self):
-        str_repr(self)
+        return str_repr(self)
 
 
 class UserGeneRelationship(db.Model):
@@ -90,7 +90,7 @@ class UserGeneRelationship(db.Model):
     uniqueVariantId = db.Column(db.Integer, db.ForeignKey(Gene.id), nullable=False)
 
     def __str__(self):
-        str_repr(self)
+        return str_repr(self)
 
 
 class UserInfo(db.Model):
@@ -107,7 +107,7 @@ class UserInfo(db.Model):
         self.gender = gender
 
     def __str__(self):
-        str_repr(self)
+        return str_repr(self)
 
 
 class UserTime(db.Model):
@@ -122,24 +122,24 @@ class UserTime(db.Model):
         self.modifyTime = modifyTime
 
     def __str__(self):
-        str_repr(self)
+        return str_repr(self)
 
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(50), nullable=False)
-    password = db.Column(db.String(100))
+    password = db.Column(db.String(100), nullable=False)
     timeId = db.Column(db.Integer, db.ForeignKey(UserTime.id), nullable=False)
     infoId = db.Column(db.Integer, db.ForeignKey(UserInfo.id), nullable=False)
     clinicianId = db.Column(db.Integer, db.ForeignKey(Clinician.id), nullable=False)
-    subsetId = db.Column(db.Integer)
+    subsetId = db.Column(db.Integer, db.ForeignKey(UserGeneRelationship.id), nullable=False)
     medicationId = db.Column(db.Integer, db.ForeignKey(Medication.id))
 
     def __init__(self, email):
         self.email = email
 
     def __str__(self):
-        str_repr(self)
+        return str_repr(self)
 
 
 if __name__ == '__main__':
