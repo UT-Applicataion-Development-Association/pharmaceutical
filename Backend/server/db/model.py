@@ -1,12 +1,6 @@
 from server.db import db
 
 
-def add_instance(models):
-    for model in models:
-        db.session.add(model)
-    db.session.commit()
-
-
 def query_instance(model, parameters):
     res = model.query.filter_by(**parameters).all()
     return res
