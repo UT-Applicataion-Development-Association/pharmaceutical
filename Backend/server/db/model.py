@@ -24,8 +24,8 @@ def str_repr(model):
 class Clinician(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(500), nullable=False)
-    phone = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(100), nullable=False)
+    phone = db.Column(db.String(100))
+    email = db.Column(db.String(100))
 
     def __init__(self, name, phone, email):
         self.name = name
@@ -71,7 +71,7 @@ class Symptom(db.Model):
         return str_repr(self)
 
 
-class MedicationRelationship(db.Model):
+class UserMedicationRelationship(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     medicationId = db.Column(db.Integer, db.ForeignKey(Medication.id), nullable=False)
     symptomId = db.Column(db.Integer, db.ForeignKey(Symptom.id), nullable=False)
@@ -95,7 +95,7 @@ class UserGeneRelationship(db.Model):
 
 class UserInfo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
+    name = db.Column(db.String(100), nullable=False)
     DOB = db.Column(db.Date, nullable=False)
     isPatient = db.Column(db.Boolean, nullable=False)
     gender = db.Column(db.Integer, nullable=False)
@@ -127,7 +127,7 @@ class UserTime(db.Model):
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(50), nullable=False, unique=True)
     password = db.Column(db.String(100), nullable=False)
     timeId = db.Column(db.Integer, db.ForeignKey(UserTime.id), nullable=False)
     infoId = db.Column(db.Integer, db.ForeignKey(UserInfo.id), nullable=False)
