@@ -1,0 +1,26 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+isort = "*"
+pre-commit = "*"
+flake8 = "*"
+mypy = "*"
+pytest = "*"
+
+[packages]
+flask = "*"
+python-dotenv = "*"
+flask-cors = '*'
+flask-sqlalchemy = '*'
+
+
+[requires]
+python_version = "3.8"
+
+[scripts]
+test = "python -m unittest"
+serve = "python3 app.py"
+server = "python3 app.py"
