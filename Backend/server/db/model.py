@@ -129,8 +129,14 @@ class User(db.Model):
     subsetId = db.Column(db.Integer, db.ForeignKey(UserGeneRelationship.id), nullable=False)
     medicationId = db.Column(db.Integer, db.ForeignKey(Medication.id))
 
-    def __init__(self, email):
-        self.email = email
+    def __init__(self, email, password, timeId, infoId, clinicianId, subsetId, medicationId=None):
+        self.email          = email
+        self.password       = password
+        self.timeId         = timeId
+        self.infoId         = infoId
+        self.clinicianId    = clinicianId
+        self.subsetId       = subsetId
+        self.medicationId   = medicationId
 
     def __str__(self):
         return str_repr(self)
