@@ -18,9 +18,9 @@ class SignupPage extends React.Component {
       const { username, password,reenterPassword } = this.state;
 
       this.setState({ userInputError: true });
-      if (username == "" || password == ""  || reenterPassword == "" ) {
+      if (username === "" || password === ""  || reenterPassword === "" ) {
         this.setState({  errorMessage: "Please enter all the required field" });
-      } else if(password != reenterPassword){
+      } else if(password !== reenterPassword){
         this.setState({  errorMessage: "Passwords entered do not match" });
       } else {
         this.setState({ userInputError: false });
@@ -47,7 +47,7 @@ class SignupPage extends React.Component {
           this.context.signIn({});
 
         } else{
-          // TODO: catch other errors and return approperiate error message.
+          // TODO: catch other errors and return appropriate error message.
           this.setState({  errorMessage: "User doesn't exist or password incorrect. " });
         }
 

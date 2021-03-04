@@ -3,7 +3,7 @@ import { Text, View, Button,StyleSheet, TextInput } from "react-native";
 import AuthContext from "./contexts/AuthContext";
 
 class LoginPage extends React.Component {
-  
+
     constructor(props) {
       super(props);
       this.state = {
@@ -17,13 +17,12 @@ class LoginPage extends React.Component {
     static contextType = AuthContext;
 
     _inputCheck = () => {
-
-      if (this.state.username == "" || this.state.password == ""  ) {
+      if (this.state.username === "" || this.state.password === ""  ) {
         this.setState({ userInputError: true });
         this.setState({  errorMessage: "Please enter all the required field" });
       } else {
         this.setState({ userInputError: false });
-      }  
+      }
     };
 
     _handleLogin = async () => {
@@ -33,6 +32,7 @@ class LoginPage extends React.Component {
         console.log("User [", username,"] has logged in")
 
         // TODO: check authentication credential
+          // Note: this credential method will need to be async
         if(true){
 
           this.setState({
@@ -45,11 +45,10 @@ class LoginPage extends React.Component {
           // this.props.navigation.navigate("Landing");
 
         } else{
-          // TODO: catch other errors and return approperiate error message.
+          // TODO: catch other errors and return appropriate error message.
           this.setState({  errorMessage: "User doesn't exist or password incorrect. " });
         }
-
-      };
+      }
     }
 
 
@@ -75,13 +74,13 @@ class LoginPage extends React.Component {
 
             />
             <Button title="Sign in!" onPress={() => this._handleLogin()} />
-            <Button 
-              style={{fontSize:13}} 
-              color="grey" 
-              title="Not a user? Sign up!" 
+            <Button
+              style={{fontSize:13}}
+              color="grey"
+              title="Not a user? Sign up!"
               onPress={() => this.props.navigation.navigate("Signup")} />
 
-      
+
           </View>
         );
     }
@@ -107,7 +106,7 @@ const styles = StyleSheet.create({
     marginTop: 100,
     marginBottom:50,
     alignItems:"center",
-    
+
   },
 
   textInput :{
