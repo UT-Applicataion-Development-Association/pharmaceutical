@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { getFocusedRouteNameFromRoute, NavigationContainer } from "@react-navigation/native";
 
 import LoginPage from "./LoginPage";
+import SignupPage from "./SignupPage";
 import NewsPage from "./NewsPage";
 import TreatmentPage from "./TreatmentPage";
 import InfoPage from "./InfoPage";
@@ -131,7 +132,10 @@ export default function App() {
                             })}
                         />
                     ) : (
-                        <RootStack.Screen name="Login" component={LoginPage} />
+                        <>
+                            <RootStack.Screen name="Login" component={LoginPage} />
+                            <RootStack.Screen name="Signup" component={SignupPage} />
+                        </>
                     )}
                 </RootStack.Navigator>
             </NavigationContainer>
