@@ -15,6 +15,7 @@ import {
 import {Col} from 'react-native-easy-grid';
 import {Image, StyleSheet, Alert} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import InfoPage from "./InfoPage";
 
 const styles = StyleSheet.create({
     header: {
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
         margin: 10,
         width: 150,
         height: 150,
-        // borderRadius: 100,
+        borderRadius: 100,
         overflow: "hidden",
         borderWidth: 2,
         borderColor: "white"
@@ -48,7 +49,7 @@ class SettingPage extends React.Component {
     render() {
         return (
             <Container>
-                <Col style={{alignItems: "center", justifyContent: 'center'}}>
+                <Col style={{width: "100%", height: 180, alignItems: "center", justifyContent: 'center'}}>
                     <Button transparent onPress={this.pickImage}  style={{alignSelf:'center'}}>
                         {this.state.userImage &&
                         <Image
@@ -162,6 +163,7 @@ class SettingPage extends React.Component {
                         </ListItem>
                     </List>
                 </Content>
+                <InfoPage/>
             </Container>
         );
     }
