@@ -5,17 +5,20 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { getFocusedRouteNameFromRoute, NavigationContainer } from "@react-navigation/native";
 
 import LoginPage from "./LoginPage";
-import SignupPage from "./SignupPage";
 import NewsPage from "./NewsPage";
-import TreatmentPage from "./TreatmentPage";
+import TreatmentPage from "./components/Treatment/TreatmentPage";
+import TreatmentGene1 from "./components/Treatment/TreatmentGene1";
+import TreatmentGene2 from "./components/Treatment/TreatmentGene2";
 import InfoPage from "./InfoPage";
 import TrialsPage from "./TrialsPage";
 import AuthContext from "./contexts/AuthContext";
 
+/*
 function getHeaderTitle(route) {
     // custom header title goes here
     return getFocusedRouteNameFromRoute(route) ?? 'Feed';
 }
+*/
 
 const NewsStack = createStackNavigator();
 export function NewsScreen() {
@@ -26,11 +29,15 @@ export function NewsScreen() {
     )
 }
 
+
+
 const TreatmentStack = createStackNavigator();
 export function TreatmentScreen() {
     return (
-        <TreatmentStack.Navigator>
-            <TreatmentStack.Screen name="Treatment" component={TreatmentPage} />
+        <TreatmentStack.Navigator initialRouteName="SelectPage">
+                <TreatmentStack.Screen name="SelectPage" component={TreatmentPage} options={{ title: 'Variant' }} />
+                <TreatmentStack.Screen name="Gene1" component={TreatmentGene1} options={{ title: 'Tried Treatments' }}/>
+                <TreatmentStack.Screen name="Gene2" component={TreatmentGene2} options={{ title: 'Tried Treatments' }}/>
         </TreatmentStack.Navigator>
     )
 }
@@ -88,7 +95,7 @@ export function MainScreen() {
             }}
         >
             <MainTab.Screen name="News" component={NewsScreen} />
-            <MainTab.Screen name="Treatment" component={TreatmentScreen} />
+            <MainTab.Screen name="Treatment" component={TreatmentScreen}   />
             <MainTab.Screen name="Trials" component={TrialsScreen} />
             <MainTab.Screen name="Info" component={InfoScreen} />
         </MainTab.Navigator>
@@ -128,14 +135,12 @@ export default function App() {
                             name="Landing"
                             component={MainScreen}
                             options={({ route }) => ({
-                                headerTitle: getHeaderTitle(route),
+                                //headerTitle: getHeaderTitle(route),
+                                headerShown: false
                             })}
                         />
                     ) : (
-                        <>
-                            <RootStack.Screen name="Login" component={LoginPage} />
-                            <RootStack.Screen name="Signup" component={SignupPage} />
-                        </>
+                        <RootStack.Screen name="Login" component={LoginPage} />
                     )}
                 </RootStack.Navigator>
             </NavigationContainer>
