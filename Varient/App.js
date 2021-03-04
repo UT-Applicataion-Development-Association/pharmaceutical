@@ -35,7 +35,7 @@ const TreatmentStack = createStackNavigator();
 export function TreatmentScreen() {
     return (
         <TreatmentStack.Navigator initialRouteName="SelectPage">
-                <TreatmentStack.Screen name="SelectPage" component={TreatmentPage} options={{ title: 'Variant' }} />
+                <TreatmentStack.Screen name="SelectPage" component={TreatmentPage} options={{ title: 'Treatment' }} />
                 <TreatmentStack.Screen name="Gene1" component={TreatmentGene1} options={{ title: 'Tried Treatments' }}/>
                 <TreatmentStack.Screen name="Gene2" component={TreatmentGene2} options={{ title: 'Tried Treatments' }}/>
         </TreatmentStack.Navigator>
