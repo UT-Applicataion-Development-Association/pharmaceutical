@@ -12,6 +12,10 @@ class NewsPage extends React.Component {
         };
     }
 
+    navigateToTreatmentPage = () => {
+        this.props.navigation.navigate("Treatment");
+    }
+
     render() {
         return (
             <Container>
@@ -45,7 +49,7 @@ class NewsPage extends React.Component {
                             </Text>
                         </CardItem>
                     </Card>
-                    <Button warning style={{ marginVertical: windowDim.height * 0.05, alignSelf: "center" }}>
+                    <Button warning style={{ marginVertical: windowDim.height * 0.05, alignSelf: "center" }} onPress={this.navigateToTreatmentPage}>
                         <Text>View new data</Text>
                     </Button>
                 </Content>

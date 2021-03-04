@@ -34,15 +34,15 @@ class InfoPage extends React.Component {
     }
 
     _showExternalWebsite(target) {
-        var target_url;
-        if (target == "Terms and Conditions") {
+        let target_url;
+        if (target === "Terms and Conditions") {
             target_url = TERMS_AND_CONDITIONS_URL;
-        } else if (target == "Private Policy") {
+        } else if (target === "Private Policy") {
             target_url = PRIVATE_POLICY_URL;
-        } else if (target == "Contact") {
+        } else if (target === "Contact") {
             target_url = CONTACT_URL;
         }
-        Linking.openURL(target_url).catch((err) => console.error("An error occured when trying to open " + target + "."));
+        Linking.openURL(target_url).catch((err) => console.error("An error occurred when trying to open " + target + "."));
     }
 }
 
