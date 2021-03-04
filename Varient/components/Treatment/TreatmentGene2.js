@@ -101,7 +101,7 @@ class TreatmentGene1 extends React.Component {
                   borderColor: "gray",
                   borderWidth: 0.5,
                 }}
-              ></View>
+              />
               <View
                 style={{
                   width: this.getRedWidth(
@@ -112,7 +112,7 @@ class TreatmentGene1 extends React.Component {
                   borderColor: "gray",
                   borderWidth: 0.5,
                 }}
-              ></View>
+              />
             </View>
           </View>
 

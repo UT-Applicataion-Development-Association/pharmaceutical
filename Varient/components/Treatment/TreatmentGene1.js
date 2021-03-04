@@ -22,7 +22,7 @@ class TreatmentGene1 extends React.Component {
   treatmentList = () => {
     let treatments = ["Lamotrigine", "Topiramate", "Memantine"];
     let displayTreatments = [];
-    for (count = 1; count <= treatments.length; count++) {
+    for ( let count = 1; count <= treatments.length; count++) {
       displayTreatments.push({
         count: String(count),
         content: treatments[count - 1],
@@ -100,7 +100,7 @@ class TreatmentGene1 extends React.Component {
                   borderColor: "gray",
                   borderWidth: 0.5,
                 }}
-              ></View>
+              />
               <View
                 style={{
                   width: this.getRedWidth(
@@ -111,7 +111,7 @@ class TreatmentGene1 extends React.Component {
                   borderColor: "gray",
                   borderWidth: 0.5,
                 }}
-              ></View>
+              />
             </View>
           </View>
 
